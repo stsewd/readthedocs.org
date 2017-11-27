@@ -536,10 +536,11 @@ class Project(models.Model):
                 return filename
 
         # If the project has more than one conf.py file but none of them have
-        # the `doc` word in the path, we raise an error informing this to the user
-        if len(files) > 0:
-            # TODO: use ProjectConfigurationError exception here when it gets merged
-            # https://github.com/rtfd/readthedocs.org/pull/3310
+        # the `doc` word in the path, we raise an error informing this to the
+        # user
+        if files:
+            # TODO: use ProjectConfigurationError exception here when it gets
+            # merged, https://github.com/rtfd/readthedocs.org/pull/3310
             raise BuildEnvironmentError(_(
                 "There are more than one conf.py file and none of them say doc "
                 "in their path, we don't know which one use. Please, select "
