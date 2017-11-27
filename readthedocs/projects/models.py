@@ -21,6 +21,7 @@ from readthedocs.builds.constants import LATEST, LATEST_VERBOSE_NAME, STABLE
 from readthedocs.core.resolver import resolve, resolve_domain
 from readthedocs.core.utils import broadcast, slugify
 from readthedocs.core.validators import validate_domain_name
+from readthedocs.doc_builder.exceptions import BuildEnvironmentError
 from readthedocs.projects import constants
 from readthedocs.projects.exceptions import ProjectImportError
 from readthedocs.projects.querysets import (
@@ -529,12 +530,28 @@ class Project(models.Model):
         if len(files) == 1:
             return files[0]
         for filename in files:
+            # When multiples conf.py files, we look up the first one that
+            # contains the `doc` word in its path and return this one
             if filename.find('doc', 70) != -1:
                 return filename
+
+        # If the project has more than one conf.py file but none of them have
+        # the `doc` word in the path, we raise an error informing this to the user
+        if len(files) > 0:
+            # TODO: use ProjectConfigurationError exception here when it gets merged
+            # https://github.com/rtfd/readthedocs.org/pull/3310
+            raise BuildEnvironmentError(_(
+                "There are more than one conf.py file and none of them say doc "
+                "in their path, we don't know which one use. Please, select "
+                "the correct one under the Advanced settings tab in the "
+                "project's Admin."))
+
         # Having this be translatable causes this odd error:
         # ProjectImportError(<django.utils.functional.__proxy__ object at
         # 0x1090cded0>,)
-        raise ProjectImportError(
+        # TODO: use ProjectConfigurationError exception here when it gets merged
+        # https://github.com/rtfd/readthedocs.org/pull/3310
+        raise BuildEnvironmentError(
             u"Conf File Missing. Please make sure you have a conf.py in your project.")
 
     def conf_dir(self, version=LATEST):
