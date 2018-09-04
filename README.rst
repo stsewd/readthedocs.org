@@ -1,7 +1,7 @@
 Welcome to Read the Docs
 ========================
 
-|build-status| |docs|
+|build-status|
 
 Purpose
 -------
