@@ -34,8 +34,3 @@ for example:
        'https://httpbin.org/basic-auth/username/password',
        auth=(username, password),
    )
-
-Another title
-=============
-
-Can you index me?
