@@ -1,8 +1,3 @@
-Some other text before the first title
-
-I Need Secrets (or Environment Variables) in my Build
-=====================================================
-
 It may happen that your documentation depends on an authenticated service to be built properly.
 In this case, you will require some secrets to access these services.
 
