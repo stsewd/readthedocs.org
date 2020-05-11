@@ -1,3 +1,5 @@
+Some other text before the first title
+
 I Need Secrets (or Environment Variables) in my Build
 =====================================================
 
@@ -37,3 +39,8 @@ for example:
        'https://httpbin.org/basic-auth/username/password',
        auth=(username, password),
    )
+
+Another title
+=============
+
+Can you index me?
