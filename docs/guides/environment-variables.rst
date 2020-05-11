@@ -1,4 +1,4 @@
-Some other text before the first title
+Index this
 
 I Need Secrets (or Environment Variables) in my Build
 =====================================================
@@ -41,6 +41,16 @@ for example:
    )
 
 Another title
-=============
+-------------
 
 Can you index me?
+
+Three
+~~~~~
+
+Index three
+
+Four
+''''
+
+Index four
